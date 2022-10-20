@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="table.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="https://kit.fontawesome.com/765f318ad9.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+        integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- date range picker cdn -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+</head>
+
+<body id="mainbody">
+    <header>
+        <div class="container-fluid head">
+            <a href="https://onprem.boodskap.io/platform/home/"><img src="assets/boodskap-logo.png" alt="img"></a>
+        </div>
+    </header>
+    <section class="bg">
+        <div class="text-center my-5 text-white bg-dark ">
+            <h1>
+                Student Details
+            </h1>
+        </div>
+
+        <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" /> -->
+        <div class="row container-fluid d-flex justify-content-center">
+            <div class="col-md-12 ">
+                <div class="d-flex justify-content-between">
+                    <button id="dltall" class="btn btn-danger" onclick="alldel()">Delete All</button>
+                    <!-- //////////////toggle//////////// -->
+                    <!-- //////////////toggle//////////// -->
+                    <!-- //////////////toggle//////////// -->
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
+                        data-whatever="@mdo">Add student</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addstudent">Student Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form autocomplete="off" id="formreset" class="needs-validation" novalidate>
+                                        <div class="form-group">
+                                            <label for="first-name" class="col-form-label">FirstName:</label>
+                                            <input type="text" class="form-control" id="first-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-name" class="col-form-label">LastName:</label>
+                                            <textarea class="form-control" id="last-name"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dob" class="col-form-label">Dob:</label>
+                                            <input type="date" class="form-control" id="dob">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dept" class="col-form-label">Department:</label>
+                                            <input type="text" class="form-control" id="dept">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="year" class="col-form-label">Year:</label>
+                                            <input type="number" class="form-control" id="year">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="sub" data-dismiss="modal"
+                                        class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ////////////////toggle///////////////// -->
+                    <!-- //////////////toggle//////////// -->
+                    <!-- //////////////toggle//////////// -->
+                    <div class="modal fade" id="updateform" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addstudent">Student Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form autocomplete="off" class="needs-validation" novalidate>
+                                        <div class="form-group">
+                                            <label for="first-name" class="col-form-label">created By:</label>
+                                            <input type="text" class="form-control" readonly id="created-date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="first-name" class="col-form-label">Time:</label>
+                                            <input type="text" class="form-control" readonly id="created-time">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="first-name" class="col-form-label">FirstName:</label>
+                                            <input type="text" class="form-control" id="ufirst-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-name" class="col-form-label">LastName:</label>
+                                            <textarea class="form-control" id="ulast-name"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dob" class="col-form-label">Dob:</label>
+                                            <input type="text" class="form-control" id="udob">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dept" class="col-form-label">Department:</label>
+                                            <input type="text" class="form-control" id="udept">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="year" class="col-form-label">Year:</label>
+                                            <input type="text" class="form-control" id="uyear">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="update" data-dismiss="modal"
+                                        class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <table id="jtable" class="table table-bordered  table-striped ">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col" class="h4">FirstName</th>
+                            <th scope="col" class="h4">LastName</th>
+                            <th scope="col" class="h4">DOB</th>
+                            <th scope="col" class="h4">Dept</th>
+                            <th scope="col" class="h4">Year</th>
+                            <th scope="col" class="h4">CreatedBy</th>
+                            <th scope="col" class="h4">Time</th>
+                            <th scope="col" class="h4">Updated</th>
+                            <th scope="col" class="h4">Edit</th>
+                            <th scope="col" class="h4">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="scripting.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
